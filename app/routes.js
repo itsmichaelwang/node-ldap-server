@@ -9,4 +9,8 @@ module.exports = function(app) {
 			// user : req.user
 		});
 	});
+
+	app.post('/login', function(req, res) {
+		console.log(req.body);
+	});
 };
