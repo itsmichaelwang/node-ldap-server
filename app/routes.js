@@ -11,7 +11,9 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/login', function(req, res) {
-		res.render('login.html');
+		res.render('login.html', {
+			messages: req.flash('error')
+		});
 	});
 
 	app.post('/login', passport.authenticate('ldapauth', {
