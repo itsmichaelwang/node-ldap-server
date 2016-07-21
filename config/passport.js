@@ -5,9 +5,14 @@ var LdapStrategy = require('passport-ldapauth');
 module.exports = function(passport) {
 
   // used to serialize the user for the session
-  // passport.serializeUser(function(user, done) {
-  //   done(null, user.uid);
-  // });
+  passport.serializeUser(function(user, done) {
+    var sessionUser = user;
+    done(null, sessionUser);
+  });
+
+  passport.deserializeUser(function(sessionUser, done) {
+    done(null, sessionUser);
+  });
 
   // LDAP Authentication
   options = {

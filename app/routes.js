@@ -6,11 +6,20 @@ module.exports = function(app, passport) {
 	// home page
 	app.get('/', function(req, res) {
 		res.render('index.html', {
-			// user : req.user
+			userData: req.session.passport || null
 		});
 	});
 
-	app.post('/login', passport.authenticate('ldapauth', {'session':false}), function(req, res) {
+	app.get('/login', function(req, res) {
+		res.render('login.html');
+	});
+
+	app.post('/login', passport.authenticate('ldapauth', {
+		successRedirect: '/',
+		failureRedirect: '/login',
+		failureFlash: true
+
+	}), function(req, res) {
 		console.log(req);
 		res.send({status: 'ok'});
 	});

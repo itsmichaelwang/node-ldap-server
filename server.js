@@ -9,6 +9,7 @@ var port = process.env.PORT || 8000;
 var path = require('path');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -19,16 +20,14 @@ app.use(express.static(path.join(__dirname, '/public')));     // static files lo
 app.set('views', path.join(__dirname, '/public/views'));
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
+
 app.use(morgan('dev'));
+app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended': 'false'}));
 
 // required for passport
-app.use(session({
-  secret: process.env.SECRET, // session secret
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(session({secret: process.env.SECRET}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

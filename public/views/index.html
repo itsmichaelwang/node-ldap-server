@@ -16,12 +16,14 @@
 </head>
 
 <body>
-  <!-- <script src="js/scripts.js"></script> -->
+  <h1>ASG Senate Portal</h1>
 
-  <form action="/login" method="post">
-    Username: <input type="text" name="username"></br>
-    Password: <input type="password" name="password"></br>
-    <input type="submit" value="Submit">
-  </form>
+  <%if (userData) { %>
+    Welcome <%= userData.user.uid %>!
+  <% } else { %>
+    <a href="/login">Login</a>
+  <% } %>
+
+  <!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>
