@@ -1,6 +1,6 @@
 // app/routes.js
 
-module.exports = function(app) {
+module.exports = function(app, passport) {
 
 //// VIEWS ---------------------------------------------------------------------
 	// home page
@@ -10,7 +10,8 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/login', function(req, res) {
-		console.log(req.body);
+	app.post('/login', passport.authenticate('ldapauth', {'session':false}), function(req, res) {
+		console.log(req);
+		res.send({status: 'ok'});
 	});
 };
