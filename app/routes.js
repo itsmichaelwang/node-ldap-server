@@ -6,7 +6,7 @@ module.exports = function(app, passport) {
 	// home page
 	app.get('/', function(req, res) {
 		res.render('index.html', {
-			userData: req.session.passport || null
+			user: req.user || null
 		});
 	});
 
@@ -20,9 +20,8 @@ module.exports = function(app, passport) {
 		successRedirect: '/',
 		failureRedirect: '/login',
 		failureFlash: true
-
+		
 	}), function(req, res) {
-		console.log(req);
 		res.send({status: 'ok'});
 	});
 };

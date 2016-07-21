@@ -18,8 +18,8 @@
 <body>
   <h1>ASG Senate Portal</h1>
 
-  <%if (userData) { %>
-    Welcome <%= userData.user.uid %>!
+  <%if (user) { %>
+    Welcome <%= user.uid %>!
   <% } else { %>
     <a href="/login">Login</a>
   <% } %>
