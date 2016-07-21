@@ -6,4 +6,4 @@
   * `SECRET`: Any secure passphrase will do
   * `LDAP_BIND_DN` and `LDAP_BIND_CREDENTIALS`: Credentials for LDAP service account; given out on a need-to-know basis
 
-And you're all set! `node server.js` to run the server.
+And you're all set! `node server.js` to run the server. Oh also you need to be on the VPN for it to work, because access to the LDAP directory is IP restricted.
